@@ -37,6 +37,10 @@ func (g *GroupMessageHandler) ReplyText(msg *openwechat.Message) error {
 	if !msg.IsAt() {
 		return nil
 	}
+	//判断是不是自己发送的消息
+	if msg.IsSendBySelf() {
+		return nil
+	}
 
 	// 替换掉@文本，然后向GPT发起请求
 	replaceText := "@" + sender.Self.NickName
@@ -44,7 +48,7 @@ func (g *GroupMessageHandler) ReplyText(msg *openwechat.Message) error {
 	reply, err := gtp.Completions(requestText)
 	if err != nil {
 		log.Printf("gtp request error: %v \n", err)
-		msg.ReplyText("机器人神了，我一会发现了就去修。")
+		msg.ReplyText("由于境外网络问题连接中断，请重新发送。")
 		return err
 	}
 	if reply == "" {

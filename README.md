@@ -23,4 +23,5 @@ copy config.dev.json config.json
 # 启动项目
 go run main.go
 
-启动前需替换config中的api_key
+启动前需替换config中的api_key,
+获取方式：https://platform.openai.com/account/api-keys
