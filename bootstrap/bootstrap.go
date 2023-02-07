@@ -23,7 +23,7 @@ func Run() {
 		return
 	}
 	// 执行热登录
-	err := bot.HotLogin(reloadStorage)
+	err := bot.HotLogin(reloadStorage, true)
 	if err != nil {
 		if err = bot.Login(); err != nil {
 			log.Printf("login error: %v \n", err)
