@@ -38,7 +38,7 @@ func (g *UserMessageHandler) ReplyText(msg *openwechat.Message) error {
 	reply, err := gtp.Completions(requestText)
 	if err != nil {
 		log.Printf("gtp request error: %v \n", err)
-		msg.ReplyText("网络问题请稍后再试，或者练习沛公修复。")
+		msg.ReplyText("网络问题请稍后再试，或者联系管理员修复。")
 		return err
 	}
 	if reply == "" {
