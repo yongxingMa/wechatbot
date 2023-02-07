@@ -40,11 +40,11 @@ func Handler(msg *openwechat.Message) {
 	// 好友申请
 	if msg.IsFriendAdd() {
 		if config.LoadConfig().AutoPass {
-			//_, err := msg.Agree("你好我是基于ChatGPT引擎开发的AI机器人，你可以向我提问任何问题。")
-			//if err != nil {
-			//	log.Fatalf("add friend agree error : %v", err)
-			//	return
-			//}
+			_, err := msg.Agree("你好我是基于ChatGPT引擎开发的AI机器人，你可以向我提问任何问题。")
+			if err != nil {
+				log.Fatalf("add friend agree error : %v", err)
+				return
+			}
 		}
 	}
 
