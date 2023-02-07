@@ -18,10 +18,10 @@ func Run() {
 	// 创建热存储容器对象
 	reloadStorage := openwechat.NewJsonFileHotReloadStorage("storage.json")
 
-	if err := bot.Login(); err != nil {
-		log.Printf("login error: %v \n", err)
-		return
-	}
+	//if err := bot.Login(); err != nil {
+	//	log.Printf("login error: %v \n", err)
+	//	return
+	//}
 	// 执行热登录
 	err := bot.HotLogin(reloadStorage, true)
 	if err != nil {
