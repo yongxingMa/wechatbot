@@ -1,7 +1,6 @@
 package handlers
 
 import (
-	"github.com/869413421/wechatbot/gtp"
 	"github.com/eatmoreapple/openwechat"
 	"log"
 	"strings"
@@ -43,9 +42,15 @@ func (g *GroupMessageHandler) ReplyText(msg *openwechat.Message) error {
 	}
 
 	// 替换掉@文本，然后向GPT发起请求
-	replaceText := "@" + sender.Self.NickName
-	requestText := strings.TrimSpace(strings.ReplaceAll(msg.Content, replaceText, ""))
-	reply, err := gtp.Completions(requestText)
+	//replaceText := "@" + sender.Self.NickName
+	//requestText := strings.TrimSpace(strings.ReplaceAll(msg.Content, replaceText, ""))
+	//reply, err := gtp.Completions(requestText)
+	reply := "账号维护中，请访问https://agpt.top体验使用，谢谢!"
+	if err != nil {
+		log.Printf("gtp request error: %v \n", err)
+		msg.ReplyText("网络问题请稍后再试，或者联系管理员修复。")
+		return err
+	}
 	if err != nil {
 		log.Printf("gtp request error: %v \n", err)
 		msg.ReplyText("由于境外网络问题连接中断，请重新发送。")
