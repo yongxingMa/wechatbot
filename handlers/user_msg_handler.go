@@ -1,6 +1,7 @@
 package handlers
 
 import (
+	"github.com/869413421/wechatbot/gtp"
 	"github.com/eatmoreapple/openwechat"
 	"log"
 	"strings"
@@ -32,10 +33,10 @@ func (g *UserMessageHandler) ReplyText(msg *openwechat.Message) error {
 	log.Printf("Received User %v Text Msg : %v", sender.NickName, msg.Content)
 
 	// 向GPT发起请求
-	//requestText := strings.TrimSpace(msg.Content)
-	//requestText = strings.Trim(msg.Content, "\n")
-	//reply, err := gtp.Completions(requestText)
-	reply := "账号维护中，请访问https://agpt.top体验使用，谢谢!"
+	requestText := strings.TrimSpace(msg.Content)
+	requestText = strings.Trim(msg.Content, "\n")
+	reply, err := gtp.Completions(requestText)
+	//reply := "账号维护中，请访问https://agpt.top体验使用，谢谢!"
 	if err != nil {
 		log.Printf("gtp request error: %v \n", err)
 		msg.ReplyText("网络问题请稍后再试，或者联系管理员修复。")
